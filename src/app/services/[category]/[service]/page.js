@@ -12,6 +12,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ServiceCtaSection from "@/components/services/ServiceCtaSection";
 
 // Import components
 import Testimonial from "@/components/services/categoryService/Testimonial";
@@ -23,6 +24,7 @@ import FaqSection from "@/components/services/categoryService/FaqSection";
 // Import service data
 import servicesData from "@/data/services.json";
 import serviceDetailsData from "@/data/serviceDetails.json";
+import animations from '@/styles/animations.module.css';
 
 // Enhanced animated gradient background component with interactive elements
 function EnhancedBackground() {
@@ -91,7 +93,7 @@ function EnhancedBackground() {
                 width: `${size}px`,
                 height: `${size}px`,
                 opacity: opacity,
-                animation: `float ${duration}s infinite ease-in-out ${delay}s`,
+                animation: `${animations.float} ${duration}s infinite ease-in-out ${delay}s`,
               }}
             />
           );
@@ -99,20 +101,20 @@ function EnhancedBackground() {
       </div>
 
       {/* Animated light beams */}
-      <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-primary/40 via-primary/10 to-transparent animate-pulse"></div>
+      <div className={`absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-primary/40 via-primary/10 to-transparent ${animations.pulse}`}></div>
       <div
-        className="absolute top-0 left-2/3 w-[1px] h-full bg-gradient-to-b from-primary/30 via-primary/10 to-transparent animate-pulse"
+        className={`absolute top-0 left-2/3 w-[1px] h-full bg-gradient-to-b from-primary/30 via-primary/10 to-transparent ${animations.pulse}`}
         style={{ animationDelay: "1s" }}
       ></div>
       <div
-        className="absolute top-0 left-1/2 w-[1px] h-full bg-gradient-to-b from-violet-500/30 via-violet-500/10 to-transparent animate-pulse"
+        className={`absolute top-0 left-1/2 w-[1px] h-full bg-gradient-to-b from-violet-500/30 via-violet-500/10 to-transparent ${animations.pulse}`}
         style={{ animationDelay: "2s" }}
       ></div>
 
       {/* Horizontal light traces */}
-      <div className="absolute top-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent animate-subtle-float"></div>
+      <div className={`absolute top-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent ${animations['subtle-float']}`}></div>
       <div
-        className="absolute top-3/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-violet-500/20 to-transparent animate-subtle-float"
+        className={`absolute top-3/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-violet-500/20 to-transparent ${animations['subtle-float']}`}
         style={{ animationDelay: "2s" }}
       ></div>
     </div>
@@ -128,25 +130,25 @@ function InteractiveCTABackground() {
 
       {/* Animated radial patterns */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full bg-gradient-to-r from-blue-500/0 via-blue-400/20 to-blue-500/0 animate-slow-spin"></div>
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full bg-gradient-to-r from-blue-500/0 via-blue-400/20 to-blue-500/0 ${animations['slow-spin']}`}></div>
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] rounded-full bg-gradient-to-r from-indigo-600/0 via-indigo-500/15 to-indigo-600/0 animate-slow-spin"
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] rounded-full bg-gradient-to-r from-indigo-600/0 via-indigo-500/15 to-indigo-600/0 ${animations['slow-spin']}`}
           style={{ animationDirection: "reverse", animationDuration: "25s" }}
         ></div>
       </div>
 
       {/* Vibrant light streams */}
-      <div className="absolute top-0 left-1/5 w-[2px] h-full bg-gradient-to-b from-white/30 via-white/10 to-transparent skew-x-12 animate-pulse"></div>
+      <div className={`absolute top-0 left-1/5 w-[2px] h-full bg-gradient-to-b from-white/30 via-white/10 to-transparent skew-x-12 ${animations.pulse}`}></div>
       <div
-        className="absolute top-0 left-2/5 w-[3px] h-full bg-gradient-to-b from-white/25 via-white/5 to-transparent -skew-x-12 animate-pulse"
+        className={`absolute top-0 left-2/5 w-[3px] h-full bg-gradient-to-b from-white/25 via-white/5 to-transparent -skew-x-12 ${animations.pulse}`}
         style={{ animationDelay: "0.7s" }}
       ></div>
       <div
-        className="absolute top-0 left-3/5 w-[2px] h-full bg-gradient-to-b from-white/30 via-white/10 to-transparent skew-x-12 animate-pulse"
+        className={`absolute top-0 left-3/5 w-[2px] h-full bg-gradient-to-b from-white/30 via-white/10 to-transparent skew-x-12 ${animations.pulse}`}
         style={{ animationDelay: "1.4s" }}
       ></div>
       <div
-        className="absolute top-0 left-4/5 w-[1px] h-full bg-gradient-to-b from-white/25 via-white/5 to-transparent -skew-x-12 animate-pulse"
+        className={`absolute top-0 left-4/5 w-[1px] h-full bg-gradient-to-b from-white/25 via-white/5 to-transparent -skew-x-12 ${animations.pulse}`}
         style={{ animationDelay: "2.1s" }}
       ></div>
 
@@ -170,7 +172,7 @@ function InteractiveCTABackground() {
                 width: `${size}px`,
                 height: `${size}px`,
                 opacity: opacity,
-                animation: `float ${duration}s infinite ease-in-out ${delay}s, glow 3s infinite alternate ease-in-out ${Math.random() * 3}s`,
+                animation: `${animations.float} ${duration}s infinite ease-in-out ${delay}s, ${animations.glow} 3s infinite alternate ease-in-out ${Math.random() * 3}s`,
               }}
             />
           );
@@ -178,13 +180,13 @@ function InteractiveCTABackground() {
       </div>
 
       {/* Grid overlay with animated opacity */}
-      <div className="absolute inset-0 bg-[url('/grid.png')] opacity-10 animate-opacity-pulse"></div>
+      <div className={`absolute inset-0 bg-[url('/grid.png')] opacity-10 ${animations['opacity-pulse']}`}></div>
 
       {/* Gradient wave effect */}
       <div className="absolute bottom-0 left-0 right-0 h-[40%]">
-        <div className="absolute inset-0 bg-gradient-to-t from-violet-900/40 to-transparent animate-wave"></div>
+        <div className={`absolute inset-0 bg-gradient-to-t from-violet-900/40 to-transparent ${animations.wave}`}></div>
         <div
-          className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent animate-wave"
+          className={`absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent ${animations.wave}`}
           style={{ animationDelay: "1.5s" }}
         ></div>
       </div>
@@ -258,41 +260,6 @@ export default function ServiceDetailPage() {
 
     setLoading(false);
   }, [categoryId, serviceId]);
-
-  // Add global animations to the stylesheet
-  useEffect(() => {
-    const style = document.createElement("style");
-    style.innerHTML = `
-      @keyframes float {
-        0%, 100% { transform: translateY(0) translateX(0); }
-        50% { transform: translateY(-15px) translateX(5px); }
-      }
-      @keyframes subtle-float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-5px); }
-      }
-      @keyframes glow {
-        0% { box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.3); }
-        100% { box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.7); }
-      }
-      @keyframes slow-spin {
-        0% { transform: translate(-50%, -50%) rotate(0deg); }
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
-      }
-      @keyframes opacity-pulse {
-        0%, 100% { opacity: 0.08; }
-        50% { opacity: 0.15; }
-      }
-      @keyframes wave {
-        0%, 100% { transform: translateY(0) translateX(0); }
-        50% { transform: translateY(-20px) translateX(-10px); }
-      }
-    `;
-    document.head.appendChild(style);
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
 
   if (loading) {
     return (
@@ -773,154 +740,26 @@ export default function ServiceDetailPage() {
         </div>
       </section>
 
-      {/* CTA Section with enhanced interactive background */}
-      <section className="py-16 md:py-24 text-white relative overflow-hidden">
-        {/* Enhanced animated interactive background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-indigo-600 to-violet-700 overflow-hidden">
-          {/* Animated circular glow elements */}
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] rounded-full bg-gradient-to-r from-blue-500/0 via-blue-400/20 to-blue-500/0 animate-slow-spin"></div>
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full bg-gradient-to-r from-indigo-600/0 via-indigo-500/15 to-indigo-600/0 animate-slow-spin"
-            style={{ animationDirection: "reverse", animationDuration: "30s" }}
-          ></div>
-
-          {/* Dynamic wave effect */}
-          <div className="absolute bottom-0 left-0 right-0 h-[60%]">
-            <div className="absolute inset-0 bg-gradient-to-t from-violet-900/40 to-transparent animate-wave"></div>
-            <div
-              className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent animate-wave"
-              style={{ animationDelay: "1.5s" }}
-            ></div>
-          </div>
-
-          {/* Animated overlay patterns */}
-          <div className="absolute inset-0 opacity-10 bg-[url('/grid.png')] animate-opacity-pulse"></div>
-
-          {/* Light beams with animation */}
-          <div className="absolute left-1/4 top-0 w-[2px] h-full bg-gradient-to-b from-white/30 via-white/10 to-transparent skew-x-12 animate-pulse"></div>
-          <div
-            className="absolute left-2/3 top-0 w-[3px] h-full bg-gradient-to-b from-white/25 via-white/5 to-transparent -skew-x-12 animate-pulse"
-            style={{ animationDelay: "0.7s" }}
-          ></div>
-          <div
-            className="absolute left-1/3 top-0 w-[1px] h-full bg-gradient-to-b from-white/20 via-white/5 to-transparent skew-x-6 animate-pulse"
-            style={{ animationDelay: "1.4s" }}
-          ></div>
-
-          {/* Floating particles */}
-          <div className="absolute inset-0">
-            {Array.from({ length: 20 }).map((_, i) => {
-              const top = Math.floor(Math.random() * 100);
-              const left = Math.floor(Math.random() * 100);
-              const size = Math.floor(Math.random() * 4) + 2;
-              const opacity = Math.random() * 0.6 + 0.2;
-              const duration = 20 + Math.random() * 30;
-              const delay = Math.random() * -30;
-
-              return (
-                <div
-                  key={i}
-                  className="absolute rounded-full bg-white"
-                  style={{
-                    top: `${top}%`,
-                    left: `${left}%`,
-                    width: `${size}px`,
-                    height: `${size}px`,
-                    opacity: opacity,
-                    animation: `float ${duration}s infinite ease-in-out ${delay}s, glow 3s infinite alternate ease-in-out ${Math.random() * 3}s`,
-                  }}
-                />
-              );
-            })}
-          </div>
-
-          {/* Horizontal light traces */}
-          <div className="absolute top-1/4 left-0 w-full h-[1px] mt-8 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-subtle-float"></div>
-          <div
-            className="absolute top-3/4 left-0 w-full h-[1px] mt-4 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-subtle-float"
-            style={{ animationDelay: "2s" }}
-          ></div>
-        </div>
-
-        <div className="container-custom relative z-10">
-          <motion.div
-            className="max-w-3xl mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold mb-6"
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              Transform Your Business with Expert SAP Services
-            </motion.h2>
-            <motion.p
-              className="text-xl text-white/80 mb-8"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              Let our team of experienced consultants help you harness the full
-              potential of SAP for your business.
-            </motion.p>
-            <motion.div
-              className="flex flex-wrap justify-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 0 20px rgba(255,255,255,0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-white text-blue-700 hover:bg-white/90 relative overflow-hidden group"
-                >
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2"
-                  >
-                    <span className="relative z-10">Contact Us</span>
-                    <ArrowRight className="h-4 w-4 relative z-10" />
-                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-100/30 to-transparent opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-700"></span>
-                  </Link>
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="text-white bg-blue-700/40 border-white/20 hover:bg-blue-600/50 hover:border-white/40 transition-all duration-300"
-                >
-                  <Link
-                    href="/services"
-                    className="inline-flex items-center gap-2"
-                  >
-                    <span>Explore More Services</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+      {/* CTA Section */}
+      <ServiceCtaSection 
+        title={`Transform Your Business with ${serviceData?.name}`}
+        description={`Ready to take your business to the next level with our ${serviceData?.name} services? Let's discuss how we can help you achieve your goals.`}
+        primaryButton={{
+          text: "Contact Us",
+          href: "/contact"
+        }}
+        secondaryButton={{
+          text: "View All Services",
+          href: "/services"
+        }}
+        theme={{
+          primaryGradient: "from-blue-600 to-cyan-500",
+          secondaryGradient: "from-slate-950 via-blue-950 to-slate-950",
+          darkGradient: "from-black via-slate-950 to-black",
+          textColor: "text-white",
+          subtextColor: "text-gray-300"
+        }}
+      />
     </>
   );
 }

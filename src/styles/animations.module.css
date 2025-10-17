@@ -1,0 +1,32 @@
+@keyframes float {
+  from { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-15px) translateX(5px); }
+  to { transform: translateY(0) translateX(0); }
+}
+
+@keyframes subtle-float {
+  from { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.3); }
+  to { box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.7); }
+}
+
+@keyframes slow-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes opacity-pulse {
+  from, to { opacity: 0.08; }
+  50% { opacity: 0.15; }
+}
+
+@keyframes wave {
+  from { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(-10px); }
+  to { transform: translateY(0) translateX(0); }
+}

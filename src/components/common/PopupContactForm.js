@@ -1,5 +1,5 @@
 "use client";
-
+ 
 import { useEffect, useState, useRef } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,8 +15,9 @@ import {
   MessageSquare,
   ChevronDown,
 } from "lucide-react";
+import { NeonLogoBorder } from "./Navbar";
 import { submitWeb3FormData, submitFormData } from "@/lib/api";
-
+ 
 export default function PopupContactForm() {
   // Define countryCodes array with phone number length requirements
   const countryCodes = [
@@ -41,13 +42,13 @@ export default function PopupContactForm() {
     { code: "+31", country: "Netherlands", minLength: 9, maxLength: 9 },
     { code: "+52", country: "Mexico", minLength: 10, maxLength: 10 },
   ];
-
+ 
   const [open, setOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const particlesRef = useRef(null);
   const [countryDropdownOpen, setCountryDropdownOpen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-
+ 
   // Form state
   const [formData, setFormData] = useState({
     name: "",
@@ -62,7 +63,7 @@ export default function PopupContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [apiError, setApiError] = useState(null);
   const [focusedField, setFocusedField] = useState(null);
-
+ 
   // Get the selected country code details
   const getSelectedCountryDetails = () => {
     return (
@@ -70,7 +71,7 @@ export default function PopupContactForm() {
       countryCodes[0]
     );
   };
-
+ 
   useEffect(() => {
     // Only show once per visit
     if (
@@ -81,34 +82,34 @@ export default function PopupContactForm() {
       setOpen(false);
       return;
     }
-
+ 
     // Check if small screen (mobile or tablet)
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth < 1024); // Changed from 768px to 1024px to include tablets
     };
-
+ 
     // Initial check
     checkScreenSize();
-
+ 
     // Add event listener for resize
     window.addEventListener("resize", checkScreenSize);
-
+ 
     // Delayed appearance for better UX
     const timer = setTimeout(() => setOpen(true), 15000); // 15 seconds delay
-
+ 
     return () => {
       clearTimeout(timer);
       window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
-
+ 
   // Initialize particles when component mounts
   useEffect(() => {
     if (open && particlesRef.current) {
       initParticles();
     }
   }, [open, particlesRef.current]);
-
+ 
   // Close dropdown when clicking outside
   useEffect(() => {
     if (countryDropdownOpen) {
@@ -123,18 +124,18 @@ export default function PopupContactForm() {
       };
     }
   }, [countryDropdownOpen]);
-
+ 
   const initParticles = () => {
     const canvas = particlesRef.current;
     if (!canvas) return;
-
+ 
     const ctx = canvas.getContext("2d");
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-
+ 
     const particles = [];
     const particleCount = 20; // Reduced count for simplicity
-
+ 
     // Create particles
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -146,36 +147,36 @@ export default function PopupContactForm() {
         speedY: Math.random() * 0.5 - 0.25,
       });
     }
-
+ 
     function animate() {
       if (!canvas) return;
-
+ 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+ 
       particles.forEach((particle) => {
         // Update position
         particle.x += particle.speedX;
         particle.y += particle.speedY;
-
+ 
         // Wrap around edges
         if (particle.x < 0) particle.x = canvas.width;
         if (particle.x > canvas.width) particle.x = 0;
         if (particle.y < 0) particle.y = canvas.height;
         if (particle.y > canvas.height) particle.y = 0;
-
+ 
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
         ctx.fillStyle = particle.color;
         ctx.fill();
       });
-
+ 
       requestAnimationFrame(animate);
     }
-
+ 
     animate();
   };
-
+ 
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(() => {
@@ -186,25 +187,25 @@ export default function PopupContactForm() {
       }
     }, 500); // Match this with animation duration
   };
-
+ 
   // Form validation
   const validateForm = () => {
     const newErrors = {};
-
+ 
     // Name validation
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     } else if (formData.name.trim().length < 2) {
       newErrors.name = "Name must be at least 2 characters";
     }
-
+ 
     // Email validation
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
     }
-
+ 
     // Phone validation with country-specific rules
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
@@ -212,7 +213,7 @@ export default function PopupContactForm() {
       // Get selected country details for validation
       const countryDetails = getSelectedCountryDetails();
       const phoneDigits = formData.phone.replace(/\D/g, "");
-
+ 
       if (
         phoneDigits.length < countryDetails.minLength ||
         phoneDigits.length > countryDetails.maxLength
@@ -226,22 +227,22 @@ export default function PopupContactForm() {
         newErrors.phone = "Phone number can only contain digits";
       }
     }
-
+ 
     // Message validation
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
       newErrors.message = "Message must be at least 10 characters";
     }
-
+ 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-
+ 
     // Clear error for this field when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
@@ -251,36 +252,36 @@ export default function PopupContactForm() {
       setApiError(null);
     }
   };
-
+ 
   const handleCountryCodeSelect = (code) => {
     setFormData((prev) => ({ ...prev, countryCode: code }));
     setCountryDropdownOpen(false);
-
+ 
     // Clear phone error when country code changes
     if (errors.phone) {
       setErrors((prev) => ({ ...prev, phone: undefined }));
     }
   };
-
+ 
   const handleFocus = (fieldName) => {
     setFocusedField(fieldName);
   };
-
+ 
   const handleBlur = () => {
     setFocusedField(null);
   };
-
+ 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+ 
     if (!validateForm()) {
       return;
     }
-
+ 
     setSubmitting(true);
     setApiError(null);
-
+ 
     try {
       // Format the phone number with country code for submission
       const formattedFormData = {
@@ -288,10 +289,10 @@ export default function PopupContactForm() {
         phone: `${formData.countryCode} ${formData.phone}`,
         subject: `Contact Form Submission from ${formData.name}`,
       };
-
+ 
       // Submit to Web3Forms for email delivery
       const web3Result = await submitWeb3FormData(formattedFormData);
-
+ 
       // Submit to backend for lead storage
       let backendSuccess = false;
       try {
@@ -303,7 +304,7 @@ export default function PopupContactForm() {
           backendError
         );
       }
-
+ 
       if (web3Result.success) {
         setSubmitted(true);
         setFormData({
@@ -332,7 +333,7 @@ export default function PopupContactForm() {
       setSubmitting(false);
     }
   };
-
+ 
   // Form component for reusability
   const FormComponent = () => (
     <form onSubmit={handleSubmit} className="space-y-3">
@@ -367,7 +368,7 @@ export default function PopupContactForm() {
           </p>
         )}
       </div>
-
+ 
       {/* Email field */}
       <div className="space-y-1">
         <label
@@ -399,7 +400,7 @@ export default function PopupContactForm() {
           </p>
         )}
       </div>
-
+ 
       {/* Company field */}
       <div className="space-y-1">
         <label
@@ -421,7 +422,7 @@ export default function PopupContactForm() {
           placeholder="Company name"
         />
       </div>
-
+ 
       {/* Phone field with country code */}
       <div className="space-y-1">
         <label
@@ -442,7 +443,7 @@ export default function PopupContactForm() {
               <span>{formData.countryCode}</span>
               <ChevronDown size={14} className="opacity-70" />
             </button>
-
+ 
             {/* Dropdown menu */}
             {countryDropdownOpen && (
               <div className="absolute z-10 mt-1 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 max-h-60 overflow-y-auto">
@@ -462,7 +463,7 @@ export default function PopupContactForm() {
               </div>
             )}
           </div>
-
+ 
           {/* Phone number input */}
           <input
             id="phone"
@@ -495,7 +496,7 @@ export default function PopupContactForm() {
           }`}
         </p>
       </div>
-
+ 
       {/* Message field */}
       <div className="space-y-1">
         <label
@@ -527,7 +528,7 @@ export default function PopupContactForm() {
           </p>
         )}
       </div>
-
+ 
       {/* API error feedback */}
       {apiError && (
         <div className="bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300 p-2 rounded flex items-center gap-2 text-xs">
@@ -535,7 +536,7 @@ export default function PopupContactForm() {
           {apiError}
         </div>
       )}
-
+ 
       {/* Submit button */}
       <motion.button
         type="submit"
@@ -575,14 +576,14 @@ export default function PopupContactForm() {
           </>
         )}
       </motion.button>
-
+ 
       {/* Privacy note */}
       <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-2">
         By submitting, you agree to our privacy policy.
       </p>
     </form>
   );
-
+ 
   // Success message component
   const SuccessMessage = () => (
     <motion.div
@@ -600,11 +601,12 @@ export default function PopupContactForm() {
     </motion.div>
   );
 
-  return (
+   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent
         className={`p-0 overflow-hidden border-none bg-transparent shadow-xl ${isSmallScreen ? "max-w-[85%] mx-auto" : "max-w-4xl"}`}
       >
+        <DialogTitle className="sr-only">Contact Us</DialogTitle>
         <AnimatePresence>
           {open && (
             <motion.div
@@ -613,6 +615,7 @@ export default function PopupContactForm() {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
               className="relative w-full h-full rounded-xl overflow-hidden"
+              aria-labelledby="contact-dialog-title"
             >
               {/* Close button */}
               <motion.button
@@ -625,7 +628,7 @@ export default function PopupContactForm() {
               >
                 <X size={16} className="text-gray-700" />
               </motion.button>
-
+ 
               {/* Background with particles */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-700 to-indigo-900 overflow-hidden">
                 <canvas
@@ -633,7 +636,7 @@ export default function PopupContactForm() {
                   className="absolute inset-0 w-full h-full"
                 />
               </div>
-
+ 
               {/* Content container - desktop shows side-by-side, tablet and mobile show stacked */}
               <div className="relative z-10 w-full h-full flex flex-col lg:flex-row bg-white/90 dark:bg-gray-900/80 backdrop-blur-md shadow-lg rounded-xl overflow-hidden border border-white/20">
                 {/* Left side (Image) - Only visible on larger desktop screens */}
@@ -648,26 +651,24 @@ export default function PopupContactForm() {
                     </div>
                   </div>
                 )}
-
+ 
                 {/* Right side (Form) */}
                 <div className={`${isSmallScreen ? "w-full" : "lg:w-1/2"}`}>
                   {/* Header section */}
                   <div className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 p-4 ">
                     <div className="flex items-center justify-start lg:justify-center gap-2">
-                      <img
-                        src="/AtorixIT-light.png"
-                        className="w-24 h-10 bg-white rounded-lg"
-                        alt="Atorix Logo"
-                      />
-                      <h2 className="text-xl font-bold text-white">
-                        Get In Touch
-                      </h2>
+                    <div className="scale-90">
+                      <NeonLogoBorder width={90} height={28} />
                     </div>
+                    <h2 className="text-xl font-bold text-white">
+                      Get In Touch
+                    </h2>
+                  </div>
                     <p className="text-sm text-white/90 mt-1 text-center">
                       Our SAP specialists are ready to help
                     </p>
                   </div>
-
+ 
                   {/* Form section */}
                   <div className="p-4">
                     {submitted ? <SuccessMessage /> : <FormComponent />}

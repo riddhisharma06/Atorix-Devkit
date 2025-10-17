@@ -292,8 +292,7 @@ function RelatedPosts({ currentPostId }) {
   );
 }
 
-export default function BlogPostPage() {
-  const params = useParams();
+export default function BlogPostPage({ params }) {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -306,7 +305,7 @@ export default function BlogPostPage() {
     }
 
     setLoading(false);
-  }, [params.slug]);
+  }, [params]);
 
   if (loading) {
     return (

@@ -1,0 +1,55 @@
+/* Animation keyframes for service page */
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-15px) translateX(5px); }
+}
+
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.3); }
+  100% { box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.7); }
+}
+
+@keyframes slow-spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes opacity-pulse {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.15; }
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(-10px); }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-subtle-float {
+  animation: subtle-float 8s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+.animate-slow-spin {
+  animation: slow-spin 40s linear infinite;
+}
+
+.animate-opacity-pulse {
+  animation: opacity-pulse 4s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 10s ease-in-out infinite;
+}

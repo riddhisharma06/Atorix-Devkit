@@ -71,33 +71,46 @@ export function NeonLogoBorder({ width = 110, height = 30, className = "", isMob
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 z-20 animate-shine" />
         
         <div className="flex items-center z-30">
-          <div className="flex items-center">
-            <div className="relative w-10 h-10 -ml-1">
+          {isLightMode ? (
+            <div className="flex items-center">
+              <div className="relative w-10 h-10 -ml-1">
+                <Image
+                  src="/atorix-logo-old.webp"
+                  alt="Atorix Icon"
+                  fill
+                  className="relative z-30 object-contain"
+                  priority
+                />
+              </div>
               <Image
-                src={
-                  isLightMode 
-                    ? "/atorix-logo-old.png" 
-                    : "/atorix-logo.png"
-                }
+                src="/crop_logo.webp.webp"
                 alt="Atorix Logo"
-                fill
-                className="relative z-30 object-contain"
+                width={width - 25}
+                height={height + 5}
+                className="relative z-30 object-contain -ml-1"
                 priority
               />
             </div>
-            <Image
-              src={
-                isLightMode 
-                  ? "/crop_logo.webp.webp"
-                  : "/atorix text logo@3x.webp"
-              }
-              alt="Atorix"
-              width={width - 25}
-              height={height}
-              className="object-contain relative z-30 -ml-1"
-              priority
-            />
-          </div>
+          ) : (
+            <>
+              <div className="relative w-10 h-10 flex-shrink-0 -ml-1">
+                <Image
+                  src="/atorix-logo-old.webp"
+                  alt="Atorix Logo"
+                  fill
+                  className="relative z-30 object-contain"
+                  priority
+                />
+              </div>
+              <Image
+                src="/atorix text logo@3x.webp"
+                alt="Atorix IT"
+                width={width - 25}
+                height={height}
+                className="object-contain relative z-30 -ml-1"
+              />
+            </>
+          )}
         </div>
       </div>
       
@@ -426,11 +439,11 @@ export default function Navbar() {
   return (
     <>
       {/* FIRST NAVBAR - Fixed navbar */}
-      <header className={`fixed top-0 z-50 w-full transition-all duration-100 ease-in-out ${
+      <header className={`fixed top-0 z-40 w-full transition-all duration-100 ease-in-out ${
         isScrolled ? 'opacity-0 pointer-events-none transform -translate-y-full' : 'opacity-100 pointer-events-auto transform translate-y-0'
       }`}>
         <div className="transition-all duration-100 ease-in-out overflow-visible">
-          <div className="h-14 md:h-16 flex items-center justify-between transition-all duration-100 ease-in-out px-6 md:px-8 lg:px-12 relative bg-background/80 backdrop-blur-md shadow-sm w-full">
+          <div className="h-14 md:h-16 flex items-center justify-between transition-all duration-100 ease-in-out px-6 md:px-8 lg:px-12 relative bg-background/80 backdrop-blur-md shadow-sm w-full" style={{ zIndex: 50 }}>
             {/* Logo with Neon Border Effect */}
             <Link href="/" className="flex items-center space-x-2 flex-shrink-0 -ml-2 md:-ml-2">
               <NeonLogoBorder />
@@ -476,8 +489,13 @@ export default function Navbar() {
                 </div>
 
                 {isServicesOpen && (
-                  <div className="absolute left-0 top-full pt-2 z-[9999]" style={{position: 'absolute', zIndex: 9999}}>
-                    <div className="w-64 bg-popover rounded-xl border shadow-lg p-2" style={{backgroundColor: 'hsl(var(--popover))', border: '1px solid hsl(var(--border))'}}>
+                  <div className="absolute left-0 top-full pt-2 z-[100]" style={{position: 'absolute', zIndex: 100}}>
+                    <div className="w-64 bg-popover rounded-xl border shadow-lg p-2" style={{
+                      backgroundColor: 'hsl(var(--popover))', 
+                      border: '1px solid hsl(var(--border))',
+                      position: 'relative',
+                      zIndex: 100
+                    }}>
                       <div className="space-y-1 py-1">
                         {servicesData.categories.map((category) => (
                           <div
@@ -494,8 +512,17 @@ export default function Navbar() {
                             </div>
 
                             {openCategory === category.id && (
-                              <div className="absolute top-0 left-full pl-2 z-[10000]" style={{position: 'absolute', zIndex: 10000}}>
-                                <div className="w-64 bg-popover rounded-xl border shadow-lg p-2" style={{backgroundColor: 'hsl(var(--popover))', border: '1px solid hsl(var(--border))'}}>
+                              <div className="absolute top-0 left-full pl-2 z-[101]" style={{
+                                position: 'absolute', 
+                                zIndex: 101,
+                                pointerEvents: 'auto'
+                              }}>
+                                <div className="w-64 bg-popover rounded-xl border shadow-lg p-2" style={{
+                                  backgroundColor: 'hsl(var(--popover))', 
+                                  border: '1px solid hsl(var(--border))',
+                                  position: 'relative',
+                                  zIndex: 101
+                                }}>
                                   <div className="space-y-1 py-1">
                                     {category.services.map((service) => (
                                       <Link

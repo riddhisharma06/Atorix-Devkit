@@ -17,6 +17,7 @@ import {
   Zap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ServiceCtaSection from "@/components/services/ServiceCtaSection";
 
 // Import service data
 import servicesData from "@/data/services.json";
@@ -187,12 +188,14 @@ export default function DataScienceServicePage() {
             We couldn't find the service you're looking for. It may have been
             moved or doesn't exist.
           </p>
-          <Button asChild>
-            <Link href="/services/data-science">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Data Science Services
-            </Link>
-          </Button>
+          <Link href="/services/data-science" passHref>
+            <Button asChild={false}>
+              <div className="flex items-center">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                <span>Back to Data Science Services</span>
+              </div>
+            </Button>
+          </Link>
         </div>
       </div>
     );
@@ -211,6 +214,7 @@ export default function DataScienceServicePage() {
     <>
       {/* Hero Section */}
       <section className="py-20 md:py-28 relative overflow-hidden">
+        {/* Animated Background */}
         <DataScienceBackground />
 
         <div className="container-custom relative z-10">
@@ -272,28 +276,32 @@ export default function DataScienceServicePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
-              <Button
-                asChild
-                size="lg"
-                className="relative overflow-hidden group"
-              >
-                <Link href="/contact">
-                  <span className="relative z-10">Get Started</span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-primary-foreground/0 via-primary-foreground/10 to-primary-foreground/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-                </Link>
-              </Button>
+              <Link href="/contact" passHref>
+                <Button
+                  asChild={false}
+                  size="lg"
+                  className="relative overflow-hidden group"
+                >
+                  <div>
+                    <span className="relative z-10">Get Started</span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-primary-foreground/0 via-primary-foreground/10 to-primary-foreground/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
+                  </div>
+                </Button>
+              </Link>
 
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="relative overflow-hidden group"
-              >
-                <Link href="/get-demo">
-                  <span className="relative z-10">Request Demo</span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-muted/0 via-muted/30 to-muted/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-                </Link>
-              </Button>
+              <Link href="/get-demo" passHref>
+                <Button
+                  asChild={false}
+                  size="lg"
+                  variant="outline"
+                  className="relative overflow-hidden group"
+                >
+                  <div>
+                    <span className="relative z-10">Request Demo</span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-muted/0 via-muted/30 to-muted/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
+                  </div>
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -414,9 +422,11 @@ export default function DataScienceServicePage() {
                     Contact our data science team to learn more about our {serviceData.name}{" "}
                     and how we can help your business leverage data for better outcomes.
                   </p>
-                  <Button asChild size="lg">
-                    <Link href="/contact">Contact Us</Link>
-                  </Button>
+                  <Link href="/contact" passHref>
+                    <Button size="lg">
+                      Contact Us
+                    </Button>
+                  </Link>
                 </div>
               </motion.div>
             </div>
@@ -435,12 +445,14 @@ export default function DataScienceServicePage() {
                   <p className="text-muted-foreground mb-4">
                     Explore our full range of data science services
                   </p>
-                  <Button asChild variant="outline" className="w-full">
-                    <Link href="/services/data-science">
-                      All Data Science Services
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
+                  <Link href="/services/data-science" passHref>
+                    <Button variant="outline" className="w-full">
+                      <div className="flex items-center">
+                        <span>All Data Science Services</span>
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </div>
+                    </Button>
+                  </Link>
                 </motion.div>
 
                 {/* Testimonials Section */}
@@ -493,103 +505,19 @@ export default function DataScienceServicePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 text-white relative overflow-hidden">
-        {/* Gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-indigo-600 to-violet-700 overflow-hidden">
-          {/* Animated circular elements */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full bg-gradient-to-r from-blue-500/0 via-blue-400/20 to-blue-500/0 animate-slow-spin"></div>
-
-          {/* Wave effect */}
-          <div className="absolute bottom-0 left-0 right-0 h-[60%]">
-            <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/40 to-transparent"></div>
-          </div>
-
-          {/* Grid overlay */}
-          <div className="absolute inset-0 opacity-10 bg-[url('/grid.png')]"></div>
-
-          {/* Light beams */}
-          <div className="absolute left-1/4 top-0 w-[2px] h-full bg-gradient-to-b from-white/30 via-white/10 to-transparent"></div>
-          <div className="absolute left-2/3 top-0 w-[1px] h-full bg-gradient-to-b from-white/20 via-white/5 to-transparent"></div>
-        </div>
-
-        <div className="container-custom relative z-10">
-          <motion.div
-            className="max-w-3xl mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold mb-6"
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              Transform Your Business with Data Science
-            </motion.h2>
-
-            <motion.p
-              className="text-xl text-white/80 mb-8"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              Let our team of experienced data scientists help you unlock the full potential of your data for better decision-making and business growth.
-            </motion.p>
-
-            <motion.div
-              className="flex flex-wrap justify-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-white text-blue-700 hover:bg-white/90 relative overflow-hidden group"
-                >
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2"
-                  >
-                    <span className="relative z-10">Contact Us</span>
-                    <ArrowRight className="h-4 w-4 relative z-10" />
-                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-100/30 to-transparent opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-700"></span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="text-white bg-blue-700/40 border-white/20 hover:bg-blue-600/50 hover:border-white/40 transition-all duration-300"
-                >
-                  <Link
-                    href="/services/data-science"
-                    className="inline-flex items-center gap-2"
-                  >
-                    <span>Explore More Services</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+      <ServiceCtaSection 
+        title={`Transform Your Business with ${serviceData?.name}`}
+        description="Let our team of experienced data scientists help you unlock the full potential of your data for better decision-making and business growth."
+        primaryButton={{
+          text: "Contact Us",
+          href: "/contact"
+        }}
+        secondaryButton={{
+          text: "View All Services",
+          href: "/services"
+        }}
+        showGrid={false}
+      />
     </>
   );
 }
